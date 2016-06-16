@@ -5,7 +5,7 @@ FROM golang:1.6-alpine
 ADD . /go/app
 
 # Install dependencies
-RUN go install /go/app
+RUN cd /go/app && go get && go install
 
 # Expose our server port.
 EXPOSE 3000
