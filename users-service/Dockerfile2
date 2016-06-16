@@ -1,0 +1,28 @@
+`version: '2'
+services:
+thingy:
+depends_on:
+- postgres
+image: thingy
+environment:
+- AWS_SECRET_ACCESS_KEY
+- AWS_ACCESS_KEY_ID
+- AWS_REGION
+env_file: env.list
+links:
+- postgres
+ports:
+- "8002:8002"
+postgres:
+image: postgres
+environment:
+POSTGRES_USER: username
+POSTGRES_PASSWORD: pass
+POSTGRES_DB: my_db
+ports:
+- "5432:5432"
+volumes:
+- /var/lib/postgresql
+- /etc/postgresql
+- /var/log/postgresql`
+
