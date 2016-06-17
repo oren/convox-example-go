@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -41,8 +40,9 @@ func PanicIf(err error) {
 
 // dials the database, returning any error
 func SetupDB() *sql.DB {
-	connection := fmt.Sprintf("root:%s@db/users", os.Getenv("DATABASE_HOST"))
-	db, err := sql.Open("mysql", connection)
+	// connection := fmt.Sprintf("user_service:123@%s@db/users", os.Getenv("DATABASE_HOST"))
+	// db, err := sql.Open("mysql", connection)
+	db, err := sql.Open("mysql", "root:123@db/users")
 	PanicIf(err)
 
 	return db
