@@ -3,13 +3,46 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
+	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
+
+type DBConfig struct {
+	User         string
+	Password     string
+	DatabaseName string
+}
+
+type AppConfig struct {
+	Database DBConfig
+}
+
+var (
+	ConfigFile = flag.String("config", "config.json", "Config file to load")
+	Config     AppConfig
+)
+
+func init() {
+	flag.Parse()
+
+	ConfigBytes, err := ioutil.ReadFile(*ConfigFile)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = json.Unmarshal(ConfigBytes, &Config)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("config", Config.Database)
+}
 
 var db = SetupDB()
 
