@@ -17,7 +17,7 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	rows, err := db.Query("SELECT email, phone_number, description FROM directory")
+	rows, err := db.Query("SELECT email, phone_number FROM directory")
 
 	PanicIf(err)
 	defer rows.Close()
