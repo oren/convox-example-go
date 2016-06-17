@@ -17,7 +17,7 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	rows, err := db.Query("SELECT email, phone_number, description FROM books")
+	rows, err := db.Query("SELECT email, phone_number, description FROM directory")
 
 	PanicIf(err)
 	defer rows.Close()
@@ -42,7 +42,7 @@ func PanicIf(err error) {
 func SetupDB() *sql.DB {
 	// connection := fmt.Sprintf("user_service:123@%s@db/users", os.Getenv("DATABASE_HOST"))
 	// db, err := sql.Open("mysql", connection)
-	db, err := sql.Open("mysql", "root:123@db/users")
+	db, err := sql.Open("mysql", "root:123@tcp(db:3306)/users")
 	PanicIf(err)
 
 	return db
