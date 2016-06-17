@@ -1,6 +1,8 @@
 # go-mysql
 
-Base image for Golang Webservice and MySQL
+Base image for Go.
+
+This repository uses two containers: Go Webservice and MySQL Database.
 
 Run containers
 ```
