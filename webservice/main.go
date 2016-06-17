@@ -41,7 +41,7 @@ func init() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("config", Config.Database)
+	fmt.Println("config!", Config)
 }
 
 var db = SetupDB()
