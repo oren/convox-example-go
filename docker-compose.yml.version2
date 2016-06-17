@@ -1,0 +1,15 @@
+version: '2'
+services:
+  webservice:
+    build:
+      context: ./webservice/
+    command: --config /go/src/app/config.json
+    ports:
+     - "3000:3000"
+    depends_on:
+     - database
+    environment:
+     - DATABASE_HOST=database
+  database:
+    build:
+      context: ./database/
