@@ -1,7 +1,7 @@
 version: '2'
 services:
   users-service:
-    build: ./users-service
+    build: ./webservice
     ports:
      - "3000:3000"
     depends_on:
@@ -9,4 +9,4 @@ services:
     environment:
      - DATABASE_HOST=db
   db:
-    build: ./test-database
+    build: ./database
