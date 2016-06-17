@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -18,11 +19,15 @@ type User struct {
 }
 
 func main() {
-	http.HandleFunc("/users", handler)
-	http.ListenAndServe(":3000", nil)
+	http.HandleFunc("/users", getUsers)
+	err := http.ListenAndServe(":3000", nil)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func getUsers(w http.ResponseWriter, r *http.Request) {
 	rows, err := db.Query("SELECT email, phone_number FROM users")
 
 	PanicIf(err)
