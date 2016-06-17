@@ -1,12 +1,12 @@
 version: '2'
 services:
-  users-service:
+  webservice:
     build: ./webservice
     ports:
      - "3000:3000"
     depends_on:
-     - db
+     - database
     environment:
      - DATABASE_HOST=db
-  db:
+  database:
     build: ./database
