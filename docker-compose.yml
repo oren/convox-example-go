@@ -2,7 +2,6 @@ version: '2'
 services:
   webservice:
     build:
-      dockerfile: ./webservice
       context: ./webservice/
     ports:
      - "3000:3000"
@@ -12,5 +11,4 @@ services:
      - DATABASE_HOST=db
   database:
     build:
-      dockerfile: ./database
       context: ./database/
