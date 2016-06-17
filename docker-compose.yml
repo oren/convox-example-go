@@ -2,8 +2,8 @@ webservice:
   build: ./webservice/
   command: --config /go/src/app/config.json
   ports:
-    - "3000:3000"
-  link:
+    - "80:3000"
+  links:
     - database
   environment:
     - DATABASE_HOST=database
