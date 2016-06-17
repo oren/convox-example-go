@@ -26,6 +26,7 @@ type AppConfig struct {
 var (
 	ConfigFile = flag.String("config", "config.json", "Config file to load")
 	Config     AppConfig
+	db         *sql.DB
 )
 
 func init() {
@@ -41,10 +42,8 @@ func init() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("config", Config.Database)
+	db = SetupDB()
 }
-
-var db = SetupDB()
 
 type User struct {
 	Email string `json:"email"`
@@ -98,7 +97,7 @@ func PanicIf(err error) {
 }
 
 func SetupDB() *sql.DB {
-	connection := fmt.Sprintf("root:123@tcp(%s:3306)/users", os.Getenv("DATABASE_HOST"))
+	connection := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s", Config.Database.User, Config.Database.Password, os.Getenv("DATABASE_HOST"), Config.Database.DatabaseName)
 	db, err := sql.Open("mysql", connection)
 	PanicIf(err)
 

@@ -6,7 +6,7 @@ docker-compose build
 docker-compose up
 ```
 
-Get users
+Hit the HTTP endpoint
 ```
 curl localhost:3000/users
 ```
