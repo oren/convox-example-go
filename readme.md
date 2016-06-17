@@ -1,6 +1,6 @@
-# go-mysql
+# Go on Convox Example
 
-Convox Base image for Go.
+This repository contains an example Go app configured for local development and deployment to Convox.
 
 This repository uses two containers: Go Webservice and MySQL Database.
 
